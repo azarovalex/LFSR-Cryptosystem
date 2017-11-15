@@ -8,8 +8,6 @@
 
 import Cocoa
 
-// MARK: Ulitily functions
-
 func dialogError(question: String, text: String) {
     let alert = NSAlert()
     alert.messageText = question
@@ -23,7 +21,7 @@ func browseFile() -> String {
     
     let dialog = NSOpenPanel();
     
-    dialog.title                   = "Choose a .txt file";
+    dialog.title                   = "Choose a file";
     dialog.showsResizeIndicator    = true;
     dialog.showsHiddenFiles        = false;
     dialog.canChooseDirectories    = true;
@@ -58,7 +56,7 @@ class SimpleLFSR: NSViewController {
     }
     
     @IBAction func loadFile(_ sender: NSButton) {
-        path = browseFile()
+        path = "/Users/azarovalex/Desktop/Tests for LFSR/Screen Shot 2017-11-15 at 18.24.29.png"//browseFile()
         LoadFile(path)
         switch sender.tag {
         case 1:
@@ -76,6 +74,13 @@ class SimpleLFSR: NSViewController {
         default:
             break
         }
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(atPath: path + ".load")
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
     }
     
     @IBAction func generateKey(_ sender: Any) {
@@ -92,21 +97,21 @@ class SimpleLFSR: NSViewController {
             return
         }
         
-        GenerateLSFRKey(Int32(initLFSR.stringValue, radix: 2)!, keyLength, path)
+        GenerateLSFRKey(UInt(initLFSR.stringValue, radix: 2)!, path)
+        LoadFile(path + ".key")
         do {
-            keyValue.string = try String(contentsOf: URL(fileURLWithPath: path + ".key"), encoding: .ascii)
+            keyValue.string = try String(contentsOf: URL(fileURLWithPath: path + ".key.load"), encoding: .ascii)
         } catch {
             dialogError(question: "Failed reading from URL: \(path)", text: "Error: " + error.localizedDescription)
         }
         
-    }
-    @IBAction func decipher(_ sender: Any) {
-        if (keyValue.string.lengthOfBytes(using: .ascii) == 0 || outputFile.string.lengthOfBytes(using: .ascii) == 0) {
-            dialogError(question: "Cannot encipher the file!",
-                        text: "Please specify binary representation of the encoded file and generate the LFSR key!")
-            return
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(atPath: path + ".key.load")
         }
-        binaryFile.string = String(cString: Encipher(outputFile.string, keyValue.string))
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
     }
     
     @IBAction func encipher(_ sender: Any) {
@@ -115,8 +120,21 @@ class SimpleLFSR: NSViewController {
                         text: "Please specify binary representation of the file and generate the LFSR key!")
             return
         }
+        Encipher(path)
+        LoadFile(path + ".xor")
+        do {
+            outputFile.string = try String(contentsOf: URL(fileURLWithPath: path + ".xor.load"), encoding: .ascii)
+        } catch {
+            dialogError(question: "Failed reading from URL: \(path)", text: "Error: " + error.localizedDescription)
+        }
         
-        outputFile.string = String(cString: Encipher(binaryFile.string, keyValue.string))
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(atPath: path + ".xor.load")
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
     }
     
 }

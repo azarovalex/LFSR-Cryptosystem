@@ -9,20 +9,28 @@
 #include <stdio.h>
 #include <string.h>
 
-unsigned int shift_lfsr(unsigned int v);
+#define BYTES_TO_PRINT 30
 
-void GenerateLSFRKey(int init, int length, const char *path) {
-    FILE *f = fopen(strcat((char *)path, ".key"), "w");
-    int currBitNum = 0;
-    int lfsr = init;
-    for (;currBitNum < length;currBitNum++) {
-        lfsr = shift_lfsr(lfsr);
-        fprintf(f, "%d", (lfsr >> 26) & 1);
-    }
+unsigned long shift_lfsr(unsigned long v);
+
+void GenerateLSFRKey(unsigned long init, const char *path) {
+    FILE *f = fopen(path, "r");
+    fseek(f, 0, SEEK_END);
+    int length = (int) ftell(f);
     fclose(f);
+    
+    FILE *f_key = fopen(strcat((char *) path, ".key"), "w");
+    int currByteNum = 0;
+    unsigned long lfsr = init;
+    for (;currByteNum < length;currByteNum++) {
+        for (int i = 0; i < 8; i++)
+            lfsr = shift_lfsr(lfsr);
+        fprintf(f_key,"%c", (char) ((lfsr >> 26) & 0xFF));
+    }
+    fclose(f_key);
 }
 
-unsigned int shift_lfsr(unsigned int v)
+unsigned long shift_lfsr(unsigned long v)
 {
     enum {
         length         = 26,
@@ -32,7 +40,7 @@ unsigned int shift_lfsr(unsigned int v)
         tap_3          =  1,
         shift_amount_0 =  1
     };
-    const unsigned int zero = (unsigned int)(0);
+    const unsigned int zero = (unsigned long)(0);
     v = (
          (
           v << shift_amount_0
@@ -49,3 +57,5 @@ unsigned int shift_lfsr(unsigned int v)
          );
     return v;
 }
+
+

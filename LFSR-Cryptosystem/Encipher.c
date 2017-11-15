@@ -10,13 +10,22 @@
 #include <string.h>
 #include <stdlib.h>
 
-const char *Encipher(const char *plaintext, const char *key) {
-    int ciphertextLen = (int) strlen(plaintext + 1);
-    char *ciphertext = malloc(ciphertextLen);
-    int i;
-    for (i = 0; i < ciphertextLen; i++) {
-        ciphertext[i] = (plaintext[i] == key[i])? '0' : '1';
+void Encipher(const char *path) {
+    FILE *f = fopen(path, "r");
+    fseek(f, 0, SEEK_END);
+    int length = (int) ftell(f);
+    fseek(f, 0, SEEK_SET);
+    FILE *key = fopen(strcat(strdup(path), ".key"), "r");
+    FILE *xor = fopen(strcat(strdup(path), ".xor"), "w");
+    
+    char byte, key_byte, xor_byte;
+    for (int i = 0; i < length; i++) {
+        byte = getc(f);
+        key_byte = getc(key);
+        xor_byte = byte ^ key_byte;
+        fprintf(xor, "%c", xor_byte);
     }
-    ciphertext[i++] = '\0';
-    return ciphertext;
+    fclose(f);
+    fclose(key);
+    fclose(xor);
 }

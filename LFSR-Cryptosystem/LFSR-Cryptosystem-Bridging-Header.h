@@ -4,8 +4,8 @@
 
 void LoadFile(const char *path);
 void BinaryRespresentFileWithURL(const char* filePath);
-void GenerateLSFRKey(int init, int length, const char *path);
+void GenerateLSFRKey(unsigned long init, const char *path);
 
-const char *Encipher(const char *plaintext, const char *key);
+void Encipher(const char *path);
 
 
