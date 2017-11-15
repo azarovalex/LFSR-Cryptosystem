@@ -13,6 +13,8 @@
 		DFD213A91FA7AD8500FF30CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFD213A71FA7AD8500FF30CB /* Main.storyboard */; };
 		DFD213B21FA7B31700FF30CB /* SimpleLFSR.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD213B11FA7B31700FF30CB /* SimpleLFSR.swift */; };
 		DFD213B61FA7BC2200FF30CB /* WorkingWithFiles.c in Sources */ = {isa = PBXBuildFile; fileRef = DFD213B51FA7BC2200FF30CB /* WorkingWithFiles.c */; };
+		DFD213B91FA89B0700FF30CB /* GenerateLFSRKey.c in Sources */ = {isa = PBXBuildFile; fileRef = DFD213B81FA89B0700FF30CB /* GenerateLFSRKey.c */; };
+		DFD213BB1FA89BF900FF30CB /* Encipher.c in Sources */ = {isa = PBXBuildFile; fileRef = DFD213BA1FA89BF900FF30CB /* Encipher.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		DFD213B11FA7B31700FF30CB /* SimpleLFSR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLFSR.swift; sourceTree = "<group>"; };
 		DFD213B41FA7BC2200FF30CB /* LFSR-Cryptosystem-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LFSR-Cryptosystem-Bridging-Header.h"; sourceTree = "<group>"; };
 		DFD213B51FA7BC2200FF30CB /* WorkingWithFiles.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = WorkingWithFiles.c; sourceTree = "<group>"; };
+		DFD213B81FA89B0700FF30CB /* GenerateLFSRKey.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GenerateLFSRKey.c; sourceTree = "<group>"; };
+		DFD213BA1FA89BF900FF30CB /* Encipher.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Encipher.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				DFD213B51FA7BC2200FF30CB /* WorkingWithFiles.c */,
+				DFD213B81FA89B0700FF30CB /* GenerateLFSRKey.c */,
+				DFD213BA1FA89BF900FF30CB /* Encipher.c */,
 			);
 			name = "C functions";
 			sourceTree = "<group>";
@@ -167,7 +173,9 @@
 				DFD213B21FA7B31700FF30CB /* SimpleLFSR.swift in Sources */,
 				DFD213A41FA7AD8500FF30CB /* ViewController.swift in Sources */,
 				DFD213A21FA7AD8500FF30CB /* AppDelegate.swift in Sources */,
+				DFD213B91FA89B0700FF30CB /* GenerateLFSRKey.c in Sources */,
 				DFD213B61FA7BC2200FF30CB /* WorkingWithFiles.c in Sources */,
+				DFD213BB1FA89BF900FF30CB /* Encipher.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
