@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DFD213A21FA7AD8500FF30CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD213A11FA7AD8500FF30CB /* AppDelegate.swift */; };
+		DF5865091FBD07FF00F60D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD213A11FA7AD8500FF30CB /* AppDelegate.swift */; };
 		DFD213A41FA7AD8500FF30CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD213A31FA7AD8500FF30CB /* ViewController.swift */; };
 		DFD213A61FA7AD8500FF30CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFD213A51FA7AD8500FF30CB /* Assets.xcassets */; };
 		DFD213A91FA7AD8500FF30CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFD213A71FA7AD8500FF30CB /* Main.storyboard */; };
@@ -170,9 +170,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF5865091FBD07FF00F60D36 /* AppDelegate.swift in Sources */,
 				DFD213B21FA7B31700FF30CB /* SimpleLFSR.swift in Sources */,
 				DFD213A41FA7AD8500FF30CB /* ViewController.swift in Sources */,
-				DFD213A21FA7AD8500FF30CB /* AppDelegate.swift in Sources */,
 				DFD213B91FA89B0700FF30CB /* GenerateLFSRKey.c in Sources */,
 				DFD213B61FA7BC2200FF30CB /* WorkingWithFiles.c in Sources */,
 				DFD213BB1FA89BF900FF30CB /* Encipher.c in Sources */,

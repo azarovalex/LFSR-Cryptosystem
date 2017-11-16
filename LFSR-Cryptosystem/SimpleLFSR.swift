@@ -56,8 +56,17 @@ class SimpleLFSR: NSViewController {
     }
     
     @IBAction func loadFile(_ sender: NSButton) {
-        path = "/Users/azarovalex/Desktop/Tests for LFSR/Screen Shot 2017-11-15 at 18.24.29.png"//browseFile()
+        path = browseFile()
         LoadFile(path)
+//
+//        let LoadFile = Process.launchedProcess(launchPath: "say", arguments: ["/Users/azarovalex/Desktop/TestsforLFSR/ASSIGN.BMP"])
+////        LoadFile.launchPath = "/Users/azarovalex/Desktop/TestsforLFSR/LoadFile"
+////        LoadFile.arguments = ["ASSIGN.BMP"]
+//        LoadFile.waitUntilExit()
+////        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+////        let output: String = String(describing: data)
+////        print(output)
+//
         switch sender.tag {
         case 1:
             do {
