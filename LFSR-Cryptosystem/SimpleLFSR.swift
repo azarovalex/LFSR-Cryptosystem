@@ -57,16 +57,23 @@ class SimpleLFSR: NSViewController {
     
     @IBAction func loadFile(_ sender: NSButton) {
         path = browseFile()
+        var fileSize : UInt64
+        do {
+            let attr = try FileManager.default.attributesOfItem(atPath: path)
+            fileSize = attr[FileAttributeKey.size] as! UInt64
+            
+            //if you convert to NSDictionary, you can get file size old way as well.
+            let dict = attr as NSDictionary
+            fileSize = dict.fileSize()
+            if (fileSize == 0) {
+                dialogError(question: "Failed reading from URL: \(path)", text: "The file is too small!")
+                return
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+        
         LoadFile(path)
-//
-//        let LoadFile = Process.launchedProcess(launchPath: "say", arguments: ["/Users/azarovalex/Desktop/TestsforLFSR/ASSIGN.BMP"])
-////        LoadFile.launchPath = "/Users/azarovalex/Desktop/TestsforLFSR/LoadFile"
-////        LoadFile.arguments = ["ASSIGN.BMP"]
-//        LoadFile.waitUntilExit()
-////        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-////        let output: String = String(describing: data)
-////        print(output)
-//
         switch sender.tag {
         case 1:
             do {
