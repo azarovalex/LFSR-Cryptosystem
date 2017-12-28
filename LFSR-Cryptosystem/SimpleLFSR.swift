@@ -152,5 +152,4 @@ class SimpleLFSR: NSViewController {
             print("Ooops! Something went wrong: \(error)")
         }
     }
-    
 }
